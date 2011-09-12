@@ -1,0 +1,6 @@
+*.lib
+*.fas
+*.fasl
+.DS_Store
+\#*\#
+.\#*
