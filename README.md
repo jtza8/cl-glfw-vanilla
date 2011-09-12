@@ -8,17 +8,18 @@ between Common Lisp and C.
 
 In contrast to [CL-GLFW][], _Vanilla_ follows the philosophy that one
 should never write a large system. That is, one should always strive
-to do ___one___ thing well, rather than several poorly.
-
-[CL-GLFW][] was messy and not something I wanted to write my software
-on or maintain.
+to do ___one___ thing well, rather than several poorly. [CL-GLFW][]
+was messy and not something I wanted to write my software on or
+maintain.
 
 ## Installation ##
 
 Depends on:
+
 * [CFFI][]
 
 Examples depend on:
+
 * [CL-OpenGL][]
 
 Generic *nix instructions:
