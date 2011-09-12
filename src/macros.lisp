@@ -26,7 +26,7 @@
           (glfw-init)
           ,(when (and auto-set-gl-proc-address
                       (find-package 'cl-opengl-bindings))
-                 '(setf cl-opengl-bindings:*gl-get-proc-address*
+                 `(setf ,(intern "*GL-GET-PROC-ADDRESS*" :cl-opengl-bindings)
                         #'cl-glfw:get-proc-address))
           ,@body)
     (glfw-terminate)))

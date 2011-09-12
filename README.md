@@ -2,7 +2,7 @@
 
 ## Why Another Binding? ##
 
-CL-GLFW __Vanilla__ aims to be a simple binding for [GLFW][]. It aims
+CL-GLFW ___Vanilla___ aims to be a simple binding for [GLFW][]. It aims
 to be a consistent, easy to use API with a clear abstraction barrier
 between Common Lisp and C.
 
