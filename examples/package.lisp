@@ -5,4 +5,5 @@
 (defpackage #:cl-glfw-examples
   (:use #:cl #:cl-user #:cl-glfw)
   (:nicknames #:glfw-examples)
-  (:export #:triangle))
+  (:export #:triangle
+           #:callbacks))

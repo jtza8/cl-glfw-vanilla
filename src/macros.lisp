@@ -4,21 +4,26 @@
 
 (in-package #:cl-glfw)
 
-(defmacro def-glfw-callback-setter (c-name lisp-name cffi-cb-args
-                                    &body cffi-cb-funcall-args)
+(defmacro def-glfw-callback-setter (c-name lisp-name cffi-cb-return-value
+                                    cffi-cb-args &body cffi-cb-funcall-args)
   (let* ((ducked-lisp-name (intern (format nil "%~s" lisp-name)))
          (cffi-cb-name (gensym "CFFI-CALLBACK-"))
          (cffi-cb-var (intern (format nil "#:*~a*" cffi-cb-name))))
     `(progn
        (defvar ,cffi-cb-var)
-       (defcallback ,cffi-cb-name :void ,cffi-cb-args
-         (when ,cffi-cb-var
-           (funcall ,cffi-cb-var ,@cffi-cb-funcall-args)))
+       (defcallback ,cffi-cb-name ,cffi-cb-return-value ,cffi-cb-args
+         (handler-case
+             (when ,cffi-cb-var
+               (funcall ,cffi-cb-var ,@cffi-cb-funcall-args))
+           (error (var) (error var))))
        (defcfun (,c-name ,ducked-lisp-name) :void
          (,cffi-cb-name :pointer))
        (defun ,lisp-name (lisp-callback)
          (setf ,cffi-cb-var lisp-callback)
-         (,ducked-lisp-name (callback ,cffi-cb-name))))))
+         (,ducked-lisp-name
+          (if (null lisp-callback)
+              (null-pointer)
+              (callback ,cffi-cb-name)))))))
 
 (defmacro with-init ((&optional (auto-set-gl-proc-address t)) &body body)
   `(unwind-protect
@@ -29,4 +34,4 @@
                  `(setf ,(intern "*GL-GET-PROC-ADDRESS*" :cl-opengl-bindings)
                         #'cl-glfw:get-proc-address))
           ,@body)
-    (glfw-terminate)))
+     (glfw-terminate)))

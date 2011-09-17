@@ -8,4 +8,5 @@
   :serial t
   :depends-on ("cl-glfw-vanilla" "cl-opengl" "cl-glu")
   :components ((:file "package")
+               (:file "callbacks")
                (:file "triangle")))

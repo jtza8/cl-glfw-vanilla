@@ -298,14 +298,14 @@
         return-value)))
 
 (def-glfw-callback-setter "glfwSetWindowSizeCallback" set-window-size-callback
-    ((width :int) (height :int))
+    :void ((width :int) (height :int))
   width height)
 
 (def-glfw-callback-setter "glfwSetWindowCloseCallback" set-window-close-callback
-    ())
+    :boolean ())
 
 (def-glfw-callback-setter "glfwSetWindowRefreshCallback"
-    set-window-refresh-callback ())
+    set-window-refresh-callback :void ())
 
 (defcfun ("glfwGetVideoModes" %get-video-modes) :int
   (list :pointer)
@@ -359,25 +359,25 @@
 (defcfun ("glfwSetMouseWheel" set-mouse-wheel) :void
   (pos :int))
 
-(def-glfw-callback-setter "glfwSetKeyCallback" set-key-callback 
+(def-glfw-callback-setter "glfwSetKeyCallback" set-key-callback :void
     ((key :int) (state key-state))
   (to-lisp-key key) state)
 
-(def-glfw-callback-setter "glfwSetCharCallback" set-char-callback 
+(def-glfw-callback-setter "glfwSetCharCallback" set-char-callback :void
     ((char :int) (state key-state))
-  (char-code char)
+  (code-char char)
   state)
 
 (def-glfw-callback-setter "glfwSetMouseButtonCallback"
-    set-mouse-button-callback ((button mouse-button) (state key-state))
+    set-mouse-button-callback :void ((button mouse-button) (state key-state))
   button state)
 
-(def-glfw-callback-setter "glfwSetMousePosCallback" set-mouse-pos-callback
+(def-glfw-callback-setter "glfwSetMousePosCallback" set-mouse-pos-callback :void
     ((x :int) (y :int))
   x y)
 
 (def-glfw-callback-setter "glfwSetMouseWheelCallback" set-mouse-wheel-callback
-    ((pos :int))
+    :void ((pos :int))
   pos)
 
 (defcfun ("glfwGetJoystickParam" %get-joystick-param) :int

@@ -6,11 +6,10 @@ CL-GLFW ___Vanilla___ aims to be a simple binding for [GLFW][]. It aims
 to be a consistent, easy to use API with a clear abstraction barrier
 between Common Lisp and C.
 
-In contrast to [CL-GLFW][], _Vanilla_ follows the philosophy that one
-should never write a large system. That is, one should always strive
-to do ___one___ thing well, rather than several poorly. [CL-GLFW][]
-was messy and not something I wanted to write my software on or
-maintain.
+This binding was written from scratch because the author found the
+existing [CL-GLFW][] binding to be lacking in elegance. He does,
+however, appreciate the work that went into the pre-existing binding
+and respects the respective authors for their efforts.
 
 ## Installation ##
 
